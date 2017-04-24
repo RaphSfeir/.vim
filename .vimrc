@@ -1,12 +1,3 @@
-"Activate line numbers
-:set number
-"Color scheme
-syntax on
-colorscheme PaperColor 
-set cursorline
-set cursorcolumn
-set mouse=a
-
 "Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
@@ -21,10 +12,15 @@ Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' }
+Plug 'godlygeek/tabular'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'arcticicestudio/nord-vim'
+Plug 'dracula/vim'
 call plug#end()
 
 "NerdTree
-let g:NERDTreeWinSize=22
+let g:NERDTreeWinSize=25
 
 " Set ultisnips triggers
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -40,17 +36,73 @@ nnoremap <Leader>p :CtrlP<CR>
 nnoremap <Leader>o :NERDTreeToggle<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>t :!mix test<CR>
+nnoremap <Leader>i gg=G``
 map <Leader>n :bnext<CR>
 map <Leader>b :bprev<CR>
 map <Leader>c :Bclose<CR>
+
+"Appending closing characters
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
 
 "powerline
 let g:airline_powerline_fonts = 1
 set ttimeoutlen=50
 set laststatus=2
-let g:airline_theme='light'
+"let g:airline_theme='light'
+let g:airline_theme='nord'
 
 "jsx
 let g:jsx_ext_required = 0
 
 autocmd VimEnter * NERDTree
+
+"Indentation
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+"ctrlp
+let g:ctrlp_custom_ignore = {
+    \ 'dir': 'node_modules\|DS_Store\|git'
+    \ }
+
+"Syntastic
+let g:syntastic_elixir_checkers = ['elixir']
+let g:syntastic_enable_elixir_checker = 1
+let g:syntastic_javascript_checkers = ['syntastic-javacript-jsl']
+let g:syntastic_json_checkers = ['syntastic-checkers-json']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"Persistent undo
+set undofile
+set undodir=$HOME/.vim/undo
+
+set undolevels=1000
+set undoreload=10000
+
+"Activate line numbers
+:set number
+"Color scheme
+syntax on
+set cursorline
+set cursorcolumn
+set mouse=a
+
+
+"colorscheme PaperColor 
+colorscheme nord
