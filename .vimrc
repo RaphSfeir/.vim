@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
@@ -17,6 +18,8 @@ Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'rhysd/vim-crystal'
 call plug#end()
 
 "NerdTree
@@ -32,7 +35,8 @@ let mapleader = "\<Space>"
 
 "map leader stuff
 nnoremap <Leader>s :w<CR>
-nnoremap <Leader>p :CtrlP<CR>
+nnoremap <Leader>p :FZF<CR>
+nnoremap <Leader>f :!rg2vim yiwP 
 nnoremap <Leader>o :NERDTreeToggle<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>t :!mix test<CR>
@@ -57,8 +61,6 @@ let g:airline_theme='nord'
 "jsx
 let g:jsx_ext_required = 0
 
-autocmd VimEnter * NERDTree
-
 "Indentation
 filetype plugin indent on
 " show existing tab with 4 spaces width
@@ -70,23 +72,25 @@ set expandtab
 
 "ctrlp
 let g:ctrlp_custom_ignore = {
-    \ 'dir': 'node_modules\|DS_Store\|git'
-    \ }
+            \ 'dir': 'node_modules\|DS_Store\|git'
+            \ }
+
+let $FZF_DEFAULT_COMMAND='ag -g ""'
 
 "Syntastic
-let g:syntastic_elixir_checkers = ['elixir']
-let g:syntastic_enable_elixir_checker = 1
-let g:syntastic_javascript_checkers = ['syntastic-javacript-jsl']
-let g:syntastic_json_checkers = ['syntastic-checkers-json']
+"let g:syntastic_elixir_checkers = ['elixir']
+"let g:syntastic_enable_elixir_checker = 1
+"let g:syntastic_javascript_checkers = ['syntastic-javacript-jsl']
+"let g:syntastic_json_checkers = ['syntastic-checkers-json']
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 "Persistent undo
 set undofile
@@ -103,6 +107,10 @@ set cursorline
 set cursorcolumn
 set mouse=a
 
+" Temp files 
+:set directory=$HOME/.vim/swapfiles//
+:set backupdir=$HOME/.vim/swapfiles//
+:set backupcopy=yes
 
 "colorscheme PaperColor 
 colorscheme nord
