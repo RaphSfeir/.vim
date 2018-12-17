@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'elixir-lang/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 Plug 'slashmili/alchemist.vim'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,6 +21,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'rhysd/vim-crystal'
+Plug 'trotzig/import-js'
+Plug 'jparise/vim-graphql'
 call plug#end()
 
 "NerdTree
@@ -36,10 +39,11 @@ let mapleader = "\<Space>"
 "map leader stuff
 nnoremap <Leader>s :w<CR>
 nnoremap <Leader>p :FZF<CR>
-nnoremap <Leader>f :!rg2vim yiwP 
+nnoremap <Leader>h :!rg -n '
 nnoremap <Leader>o :NERDTreeToggle<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>t :!mix test<CR>
+nnoremap <Leader>f :MixFormat<CR>
 nnoremap <Leader>i gg=G``
 map <Leader>n :bnext<CR>
 map <Leader>b :bprev<CR>
