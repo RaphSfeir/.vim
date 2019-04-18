@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
 Plug 'tpope/vim-surround'
 Plug 'elixir-lang/vim-elixir'
+Plug 'jdonaldson/vaxe'
 Plug 'mhinz/vim-mix-format'
 Plug 'slashmili/alchemist.vim'
 Plug 'bling/vim-airline'
@@ -20,6 +21,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'arcticicestudio/nord-vim'
 Plug 'dracula/vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'rhysd/vim-crystal'
 Plug 'trotzig/import-js'
 Plug 'jparise/vim-graphql'
@@ -117,4 +119,4 @@ set mouse=a
 :set backupcopy=yes
 
 "colorscheme PaperColor 
-colorscheme nord
+colorscheme zenburn
